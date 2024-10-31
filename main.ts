@@ -13,32 +13,32 @@ basic.showIcon(IconNames.Happy)
 
 //moving forward until 10 cm away from wall
 input.onButtonPressed(Button.A, function() {
-    while (distanceToObject > 10) {
+    basic.clearScreen()
+    //moving forward
+    while (distanceToObject >= 11) {
         robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
         robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B4)
     }
+    //reversing and terning
     if (distanceToObject < 10) {
+        
+        //reversing
+        robotbit.StepperDegree(robotbit.Steppers.M1, -360)
+        robotbit.StepperDegree(robotbit.Steppers.M2, -360)
+
+        //turning
         robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
         robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B0)
-}
-
-        if (distanceToObject < 10)  ({
-
-            //turning 90 degrees
-           
-    })
-
+    }
 })
 
 //finding distance forever
 basic.forever(function() {
     //finding distance
-    distanceToObject = sonar.ping(
+       distanceToObject = sonar.ping(
         DigitalPin.P15,
         DigitalPin.P14,
         PingUnit.Centimeters,
     )
     basic.showNumber(distanceToObject)
 })
-
-basic.showNumber(distanceToObject)
