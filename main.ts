@@ -5,30 +5,28 @@
  * This program turns 90 digres when 10 cm or closer
 */
 
-let distanceToObject: number = 0
-
+let distanceToObject: number = 12
 
 //clearing
 basic.showIcon(IconNames.Happy)
 
-//moving forward until 10 cm away from wall
+//moving forward until 10 cm away from wall then backing up
 input.onButtonPressed(Button.A, function() {
     basic.clearScreen()
-    //moving forward
-    while (distanceToObject >= 11) {
-        robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
-        robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B4)
-    }
-    //reversing and terning
-    if (distanceToObject < 10) {
-        
-        //reversing
-        robotbit.StepperDegree(robotbit.Steppers.M1, -360)
-        robotbit.StepperDegree(robotbit.Steppers.M2, -360)
+    
+    while (distanceToObject >= 0) {
 
-        //turning
-        robotbit.StepperTurn(robotbit.Steppers.M1, robotbit.Turns.T1B4)
-        robotbit.StepperTurn(robotbit.Steppers.M2, robotbit.Turns.T1B0)
+        //moving forward
+        while (distanceToObject >= 11) {
+        robotbit.StpCarMove(4, 48)
+        robotbit.StpCarMove(4, 48)
+        }
+
+        //moving bakward
+        while (distanceToObject <= 10) {
+            robotbit.StpCarMove(-4, 48)
+            robotbit.StpCarMove(-4, 48)
+        }
     }
 })
 
@@ -42,3 +40,4 @@ basic.forever(function() {
     )
     basic.showNumber(distanceToObject)
 })
+
