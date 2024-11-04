@@ -7,14 +7,13 @@
 
 //setup
 let distanceToObject: number = 0
-let onOff:number = 0
 basic.showIcon(IconNames.Happy)
 
 //moving forward until 10 cm away from wall then backing up
 input.onButtonPressed(Button.A, function() {
     basic.clearScreen()
-    onOff = onOff + 1
-    if (onOff = 1) {
+
+    while (distanceToObject >= 0) {
 
         //moving forward
         while (distanceToObject >= 11) {
@@ -39,9 +38,4 @@ basic.forever(function() {
     )
 
    basic.showNumber(distanceToObject)
-})
-
-// turnig off
-input.onButtonPressed(Button.B, function () {
-    onOff = onOff - 1
 })
